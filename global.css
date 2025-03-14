@@ -1,9 +1,16 @@
+.amatic-sc-bold {
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: amatic-sc-bold, sans-serif;
     background-color: #1ac0c6; /* Light Blue Background */
     margin: 0;
     padding: 0;
 }
+
 
 /* Navigation Bar */
 header {
@@ -17,6 +24,7 @@ header {
     top: 0;
     left: 0;
     z-index: 1000;
+    font-family: anatic-sc-bold, sans-serif;
 }
 
 /* Layout for Task Manager and Schedule */

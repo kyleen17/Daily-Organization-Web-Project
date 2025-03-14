@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     loadTasks();
     scheduleTasks();
+    displayRandomQuote();
 });
 
 const blockedTimes = [
@@ -10,6 +11,30 @@ const blockedTimes = [
     { time: 15 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
     { time: 17 * 60, duration: 30, label: "Charlotte's Feeding & Changing" }
 ];
+
+const quotes = [
+    "Believe you can and you're halfway there.",
+    "Don't watch the clock; do what it does. Keep going.",
+    "The future depends on what you do today.",
+    "Success is the sum of small efforts, repeated day in and day out.",
+    "Act as if what you do makes a difference. It does.",
+    "Quality means doing it right when no one is looking.",
+    "Every moment is a fresh beginning.",
+    "You don't have to be great to start, but you have to start to be great.",
+    "Believe you can and you're halfway there.",
+    "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    "The best time to plant a tree was 20 years ago. The second best time is now."
+    
+
+];
+
+function displayRandomQuote() {
+    const quoteElement = document.getElementById("quote");
+    if (quoteElement) {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        quoteElement.textContent = quotes[randomIndex];
+    }
+}
 
 function addTask() {
     const taskName = document.getElementById("taskName").value.trim();
