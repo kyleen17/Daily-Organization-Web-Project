@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const blockedTimes = [
     { time: 8 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
     { time: 10 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
-    { time: 12.5 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
+    { time: 12 * 60 + 15, duration: 30, label: "Charlotte's Feeding & Changing" },
     { time: 15 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
     { time: 17 * 60, duration: 30, label: "Charlotte's Feeding & Changing" }
 ];
@@ -76,24 +76,33 @@ function scheduleTasks() {
     let schedule = "";
     let currentTime = 8 * 60; // Start scheduling at 8:00 AM
     
+    let allEvents = [...blockedTimes];
     tasks.forEach(task => {
-        while (blockedTimes.some(block => currentTime >= block.time && currentTime < block.time + block.duration)) {
-            let block = blockedTimes.find(b => currentTime >= b.time && currentTime < b.time + b.duration);
-            let hours = Math.floor(block.time / 60);
-            let minutes = block.time % 60;
-            let formattedTime = `${hours}:${minutes.toString().padStart(2, '0')} AM`;
-            schedule += `<div class='schedule-item'><strong>${formattedTime}</strong> - ${block.label} (${block.duration} min)</div>`;
-            currentTime = block.time + block.duration;
+        while (blockedTimes.some(b => currentTime >= b.time && currentTime < b.time + b.duration)) {
+            let blockingEvent = blockedTimes.find(b => currentTime >= b.time && currentTime < b.time + b.duration);
+            currentTime = blockingEvent.time + blockingEvent.duration;
         }
         
-        let hours = Math.floor(currentTime / 60);
-        let minutes = currentTime % 60;
-        let formattedTime = `${hours}:${minutes.toString().padStart(2, '0')} AM`;
-        
-        schedule += `<div class='schedule-item'><strong>${formattedTime}</strong> - ${task.name} (${task.time} min)</div>`;
-        
+        allEvents.push({ time: currentTime, duration: task.time, label: task.name });
         currentTime += task.time;
+    });
+    
+    allEvents.sort((a, b) => a.time - b.time);
+    
+    allEvents.forEach(event => {
+        let hours = Math.floor(event.time / 60);
+        let minutes = event.time % 60;
+        let period = hours >= 12 ? "PM" : "AM";
+        hours = hours > 12 ? hours - 12 : hours;
+        hours = hours === 0 ? 12 : hours;
+        let formattedTime = `${hours}:${minutes.toString().padStart(2, '0')} ${period}`;
+        schedule += `<div class='schedule-item'><strong>${formattedTime}</strong> - ${event.label} (${event.duration} min)</div>`;
     });
     
     document.getElementById("schedule").innerHTML = schedule;
 }
+
+window.onload = function() {
+    document.body.style.overflow = "auto";
+    document.querySelector(".container").style.marginTop = "120px";
+};
