@@ -73,7 +73,7 @@ function scheduleTasks() {
         return priorityOrder[a.priority] - priorityOrder[b.priority] || a.time - b.time;
     });
     
-    let schedule = "";
+    let schedule = "<div class='schedule-container'>";
     let currentTime = 8 * 60; // Start scheduling at 8:00 AM
     
     let allEvents = [...blockedTimes];
@@ -99,6 +99,7 @@ function scheduleTasks() {
         schedule += `<div class='schedule-item'><strong>${formattedTime}</strong> - ${event.label} (${event.duration} min)</div>`;
     });
     
+    schedule += "</div>";
     document.getElementById("schedule").innerHTML = schedule;
 }
 

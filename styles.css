@@ -1,21 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.container {
-    background: white;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    width: 400px;
-
-}
 h1 {
     text-align: center;
 }
@@ -61,3 +43,77 @@ button:hover {
 .delete-btn:hover {
     background: #c82333;
 }
+
+/* Schedule Section */
+.schedule-container {
+    flex: 1;
+    max-width: 500px;
+    background-color: #fdfa66; /* Yellow */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    color: #333;
+    margin: auto;
+}
+
+/* Task Input Styling */
+.task-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background: #fb7756; /* Coral */
+    border-radius: 8px;
+}
+
+.task-input input,
+.task-input select,
+.task-input button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+}
+
+.task-input button {
+    background: #e74645; /* Red */
+    color: white;
+    cursor: pointer;
+}
+
+.task-input button:hover {
+    background: #c13534; /* Darker Red */
+}
+
+/* Task List */
+.task-item {
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* Schedule Items */
+.schedule-item {
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #e74645; /* Red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #c13534; /* Darker Red */
+}
+
+
