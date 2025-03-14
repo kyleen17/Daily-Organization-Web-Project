@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="global.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        
+        <div class="task-input">
+            <input type="text" id="taskName" placeholder="Enter task...">
+            <select id="taskCategory">
+                <option value="daily">Daily</option>
+                <option value="cycling">Cycling</option>
+                <option value="non-urgent">Non-Urgent</option>
+                <option value="cleaning">Cleaning</option>
+                <option value="business">Business</option>
+                <option value="kindermusik">Kindermusik</option>
+
+            </select>
+            <select id="taskPriority">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <select id="taskEnergy">
+                <option value="low">Low Energy</option>
+                <option value="medium">Medium Energy</option>
+                <option value="high">High Energy</option>
+            </select>
+            <input type="number" id="taskTime" placeholder="Time (min)">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+        
+        <div id="taskList"></div>
+        
+        <h2>Daily Schedule</h2>
+        <div id="schedule"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
