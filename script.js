@@ -1,6 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     loadTasks();
+    scheduleTasks();
 });
+
+const blockedTimes = [
+    { time: 8 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
+    { time: 10 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
+    { time: 12.5 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
+    { time: 15 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
+    { time: 17 * 60, duration: 30, label: "Charlotte's Feeding & Changing" }
+];
 
 function addTask() {
     const taskName = document.getElementById("taskName").value.trim();
@@ -29,6 +38,7 @@ function addTask() {
     document.getElementById("taskName").value = "";
     document.getElementById("taskTime").value = "";
     loadTasks();
+    scheduleTasks();
 }
 
 function loadTasks() {
@@ -53,6 +63,7 @@ function deleteTask(index) {
     tasks.splice(index, 1);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     loadTasks();
+    scheduleTasks();
 }
 
 function scheduleTasks() {
@@ -66,6 +77,15 @@ function scheduleTasks() {
     let currentTime = 8 * 60; // Start scheduling at 8:00 AM
     
     tasks.forEach(task => {
+        while (blockedTimes.some(block => currentTime >= block.time && currentTime < block.time + block.duration)) {
+            let block = blockedTimes.find(b => currentTime >= b.time && currentTime < b.time + b.duration);
+            let hours = Math.floor(block.time / 60);
+            let minutes = block.time % 60;
+            let formattedTime = `${hours}:${minutes.toString().padStart(2, '0')} AM`;
+            schedule += `<div class='schedule-item'><strong>${formattedTime}</strong> - ${block.label} (${block.duration} min)</div>`;
+            currentTime = block.time + block.duration;
+        }
+        
         let hours = Math.floor(currentTime / 60);
         let minutes = currentTime % 60;
         let formattedTime = `${hours}:${minutes.toString().padStart(2, '0')} AM`;
@@ -77,5 +97,3 @@ function scheduleTasks() {
     
     document.getElementById("schedule").innerHTML = schedule;
 }
-
-document.addEventListener("DOMContentLoaded", scheduleTasks);
