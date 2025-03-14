@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     scheduleTasks();
     displayRandomQuote();
     setupTimer();
+    updateDateTime();
+    setInterval(updateDateTime, 1000); // Update time every second
 });
 
 const blockedTimes = [
@@ -166,6 +168,21 @@ function startTimer() {
         
         timeLeft--;
     }, 1000);
+}
+
+function updateDateTime() {
+    const now = new Date();
+    const dateString = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const timeString = now.toLocaleTimeString();
+    
+    let dateTimeElement = document.getElementById("dateTime");
+    if (!dateTimeElement) {
+        dateTimeElement = document.createElement("div");
+        dateTimeElement.id = "dateTime";
+        document.querySelector("nav").prepend(dateTimeElement);
+    }
+    
+    dateTimeElement.innerHTML = `<strong>${dateString}</strong><br>${timeString}`;
 }
 
 window.onload = function() {
