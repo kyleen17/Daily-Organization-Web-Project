@@ -8,7 +8,7 @@ body {
     font-family: amatic-sc-bold, sans-serif;
     background-color: #1ac0c6; /* Light Blue Background */
     margin: 0;
-    padding: 0;
+    padding-top: 150px; /* Adjust based on nav height */
 }
 
 
@@ -39,7 +39,8 @@ header {
 
 /* Task Manager Section */
 .container {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
     max-width: 500px;
     background-color: #facd60; /* Orange */
     padding: 20px;

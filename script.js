@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadTasks();
     scheduleTasks();
     displayRandomQuote();
+    setupTimer();
 });
 
 const blockedTimes = [
@@ -24,7 +25,7 @@ const quotes = [
     "Believe you can and you're halfway there.",
     "Success is not final, failure is not fatal: it is the courage to continue that counts.",
     "The best time to plant a tree was 20 years ago. The second best time is now."
-    
+
 
 ];
 
@@ -126,6 +127,45 @@ function scheduleTasks() {
     
     schedule += "</div>";
     document.getElementById("schedule").innerHTML = schedule;
+}
+
+function setupTimer() {
+    const timerContainer = document.createElement("div");
+    timerContainer.classList.add("timer-container");
+    timerContainer.innerHTML = `
+        <h2>Set Timer</h2>
+        <input type="number" id="timerInput" placeholder="Minutes" min="1">
+        <button onclick="startTimer()">Start Timer</button>
+        <p id="timerDisplay">00:00</p>
+    `;
+    
+    // Append to the main container instead of the nav
+    document.querySelector(".main-container").appendChild(timerContainer);
+}
+
+function startTimer() {
+    let minutes = parseInt(document.getElementById("timerInput").value, 10);
+    if (isNaN(minutes) || minutes <= 0) {
+        alert("Please enter a valid number of minutes.");
+        return;
+    }
+    
+    let timeLeft = minutes * 60;
+    const timerDisplay = document.getElementById("timerDisplay");
+    
+    const countdown = setInterval(() => {
+        let min = Math.floor(timeLeft / 60);
+        let sec = timeLeft % 60;
+        timerDisplay.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+        
+        if (timeLeft === 0) {
+            clearInterval(countdown);
+            timerDisplay.textContent = "Time's up!";
+            alert("Time's up!");
+        }
+        
+        timeLeft--;
+    }, 1000);
 }
 
 window.onload = function() {
