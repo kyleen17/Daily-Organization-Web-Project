@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
     setupTimer();
     updateDateTime();
     setInterval(updateDateTime, 1000); // Update time every second
+    setupNavScroll();
+    setupNavLinks();
 });
+
 
 const blockedTimes = [
     { time: 8 * 60, duration: 30, label: "Charlotte's Feeding & Changing" },
@@ -183,6 +186,43 @@ function updateDateTime() {
     }
     
     dateTimeElement.innerHTML = `<strong>${dateString}</strong><br>${timeString}`;
+}
+
+function setupNavScroll() {
+    let prevScrollpos = window.pageYOffset;
+    const nav = document.querySelector("header");
+    window.onscroll = function () {
+        let currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            nav.style.top = "0";
+        } else {
+            nav.style.top = "-80px"; // Adjust this based on nav height
+        }
+        prevScrollpos = currentScrollPos;
+    };
+}
+
+const treatYourselfIdeas = [
+    "Take a warm bath with candles.",
+    "Read a book for 30 minutes.",
+    "Go for a peaceful walk outside.",
+    "Enjoy a fancy cup of tea or coffee.",
+    "Do a face mask or skincare routine.",
+    "Listen to your favorite music and relax.",
+    "Watch an episode of your favorite show.",
+    "Buy yourself a little treat!",
+    "Write in a journal about something positive.",
+    "Try a new hobby or creative activity.",
+    "Practice piano or guitar for 30 minutes.",
+    "Try a new recipe from a cookbook.",
+];
+
+function treatYourself() {
+    const treatElement = document.getElementById("treatDisplay");
+    if (treatElement) {
+        const randomIndex = Math.floor(Math.random() * treatYourselfIdeas.length);
+        treatElement.textContent = treatYourselfIdeas[randomIndex];
+    }
 }
 
 window.onload = function() {

@@ -192,3 +192,52 @@ button:hover {
     background: #c13534; /* Darker Red */
 }
 
+.self-care-container {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #facd60; /* Orange */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.checklist {
+    list-style: none;
+    padding: 0;
+}
+
+.checklist li {
+    background: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+
+.treat-yourself-section {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    background: #facd60; /* Orange */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.treat-yourself-section button {
+    padding: 10px 15px;
+    font-size: 18px;
+    border: none;
+    background: #e74645; /* Red */
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.treat-yourself-section button:hover {
+    background: #c13534;
+}
